@@ -1,0 +1,12 @@
+name = "lyubarskii_nes"
+version = "0.1.0"
+defaultTargets = ["LeanCode"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+
+# The formalization library plus the public-facing statement files.
+[[lean_lib]]
+name = "LeanCode"
+roots = ["LeanCode", "Showcase", "Showcase_WithProofs"]
