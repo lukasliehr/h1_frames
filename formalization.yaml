@@ -5,8 +5,8 @@ version: "v0.4"
 project:
   name: "Derivatives of Theta Functions and a Problem of Lyubarskii and Nes"
   description: >-
-    Lean 4 formalization of the implication (2) ⇒ (1) of Theorem 1.1 of L. Liehr, I. Shafkulovska
-    and M. A. Taylor, "Derivatives of Theta Functions and a Problem of Lyubarskii and Nes"
+    Lean 4 formalization of the main result of the paper "Derivatives of Theta Functions and a
+    Problem of Lyubarskii and Nes" by L. Liehr, I. Shafkulovska and M. A. Taylor
     (arXiv:2609.27846): if Λ = Mℤ² ⊂ ℝ² is a lattice of density D(Λ) = q/p, where p and q are
     coprime positive integers with q ≥ p + 2, then the Gabor system of the first Hermite function
     h₁(t) = t·exp(−πt²) along Λ is a frame for L²(ℝ).
