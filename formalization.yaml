@@ -1,5 +1,5 @@
 # formalization.yaml v0.4 (https://github.com/mathlib-initiative/formalization.yaml).
-# Only the fields that Palomar requires are filled in.
+# Only the fields that Palomar requires or that its review asked for are filled in.
 version: "v0.4"
 
 project:
@@ -28,6 +28,24 @@ sources:
 automation:
   methods:
     - method: "agent"
+      models: ["Codex-5.4", "Claude Opus 4.6"]
+    - method: "agent"
+      models: ["claude-fable-5-2"]
+      framework: "Claude Code"
+  notes: >-
+    Lukas Liehr wrote the definitions and the two statements in Showcase.lean by hand. The agents
+    Codex-5.4 and Claude Opus 4.6 wrote the Lean proofs, that is, the files in LeanCode and the
+    proof parts of Showcase_WithProofs.lean. They followed the proof in the paper, and Lukas Liehr
+    directed them. Claude Fable 5.2 (Claude Code) ported the repository to Lean v4.35.0 and to the
+    Lean module system. The port repaired proofs that the newer Mathlib broke, and in Showcase.lean
+    it changed only the file header. Irina Shafkulovska and Mitchell A. Taylor are authors of the
+    mathematical proof in the paper and did not take part in the Lean work.
 
 review:
   status: "author-verified"
+  notes: >-
+    The author verification covers the statement file Showcase.lean and nothing else. Lukas Liehr
+    compared its definitions and its two statements line by line with the implication (2) ⇒ (1) of
+    Theorem 1.1 of the paper, and Section 6 of the paper records this comparison. No author read
+    the proofs that the agents wrote. Their correctness rests on the Lean kernel, that is, on the
+    build and on `lake comparator --config comparator.json`.
