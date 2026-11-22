@@ -1,4 +1,8 @@
-import LeanCode.ZakTransform.Refinement
+module
+
+public import LeanCode.ZakTransform.Refinement
+
+@[expose] public section
 
 open scoped Matrix ComplexOrder
 open MeasureTheory

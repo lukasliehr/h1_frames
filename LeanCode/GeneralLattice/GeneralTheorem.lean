@@ -1,4 +1,8 @@
-import LeanCode.GeneralLattice.GeneratorReduction
+module
+
+public import LeanCode.GeneralLattice.GeneratorReduction
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix BigOperators

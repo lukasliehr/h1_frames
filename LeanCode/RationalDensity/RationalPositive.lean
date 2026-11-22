@@ -1,1 +1,3 @@
-import LeanCode.RationalDensity.RationalPositive.MainBounds
+module
+
+public import LeanCode.RationalDensity.RationalPositive.MainBounds

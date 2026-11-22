@@ -1,5 +1,9 @@
-import LeanCode.FrobeniusDeterminant.F1Factorization
-import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
+module
+
+public import LeanCode.FrobeniusDeterminant.F1Factorization
+public import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
+
+@[expose] public section
 
 /-!
 # WF_F3op_1 — STEP 1 of the F3 node: the cyclic minor as a row-operator determinant
@@ -742,7 +746,7 @@ theorem sliceDiff_of_contDiff {p : ℕ} (W : (Fin p → ℂ) → ℂ) (hW : Cont
 
 /-- The coordinate-sum `z ↦ ∑ r, z r` is `ContDiff ℂ ∞` (a continuous linear map). -/
 theorem contDiff_coordSum {p : ℕ} : ContDiff ℂ ∞ (fun z : Fin p → ℂ => ∑ r, z r) :=
-  ContDiff.sum (fun i _ => contDiff_apply ℂ ℂ i)
+  ContDiff.sum (fun i _ => contDiff_apply ℂ (fun _ : Fin p => ℂ) i)
 
 /-- `SliceDiff` is closed under finite sums. -/
 theorem sliceDiff_finset_sum {p : ℕ} {ι : Type*} (s : Finset ι) (G : ι → (Fin p → ℂ) → ℂ)
@@ -1074,7 +1078,7 @@ theorem contDiff_Vfactor {p : ℕ} (hp : 0 < p) {τ : ℂ} (hτ : 0 < τ.im) :
   apply contDiff_prod
   intro s _
   have hlin : ContDiff ℂ ∞ (fun u : Fin p → ℂ => u s - u r) :=
-    (contDiff_apply ℂ ℂ s).sub (contDiff_apply ℂ ℂ r)
+    (contDiff_apply ℂ (fun _ : Fin p => ℂ) s).sub (contDiff_apply ℂ (fun _ : Fin p => ℂ) r)
   exact hodd.comp hlin
 
 /-- **Verified STEP-2 reduction — the minor as a `C·κ`-jet.**  Substituting the F1

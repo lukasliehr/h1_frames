@@ -1,6 +1,10 @@
-import LeanCode.TorsionJets.FourierResidue
-import Mathlib.Algebra.Polynomial.Basic
-import Mathlib.Algebra.Polynomial.Taylor
+module
+
+public import LeanCode.TorsionJets.FourierResidue
+public import Mathlib.Algebra.Polynomial.Basic
+public import Mathlib.Algebra.Polynomial.Taylor
+
+@[expose] public section
 
 namespace LyubarskiiNes.TorsionJets
 

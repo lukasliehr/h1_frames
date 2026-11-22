@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive.BaseFiberFinite
+module
+
+public import LeanCode.RationalDensity.RationalPositive.BaseFiberFinite
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal
@@ -872,8 +876,6 @@ theorem rationalPositiveProductFourierCoeffOnSection_Lp_tendsto
     unfold rationalPositiveProductFourierCoeffOnSection_Lp
     rw [Lp.norm_toLp]
     exact toReal_eLpNorm
-      (rationalPositive_product_fourierCoeffOn_section_memLp
-        hα hβ hgap hαβ (Lp.memLp D) j).aestronglyMeasurable
   rw [hdist_sec]
   have hdist_prod :
       lpNorm (fun z : ℝ × ℝ => D z) 2 (μS.prod μU) < δ := by
@@ -882,7 +884,7 @@ theorem rationalPositiveProductFourierCoeffOnSection_Lp_tendsto
       rw [dist_eq_norm]
       dsimp [D]
       rw [Lp.norm_def]
-      exact toReal_eLpNorm (Lp.aestronglyMeasurable (Fseq N - G))
+      exact toReal_eLpNorm
     simpa [hdist_eq] using hN
   have hD_int_lt :
       (∫ z, ‖D z‖ ^ 2 ∂(μS.prod μU)) < δ ^ 2 :=

@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive.ComponentEnergy
+module
+
+public import LeanCode.RationalDensity.RationalPositive.ComponentEnergy
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal

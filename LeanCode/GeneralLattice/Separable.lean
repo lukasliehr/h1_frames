@@ -1,5 +1,9 @@
-import LeanCode.GeneralLattice.Definitions
-import LeanCode.MainTheorem
+module
+
+public import LeanCode.GeneralLattice.Definitions
+public import LeanCode.MainTheorem
+
+@[expose] public section
 
 namespace LyubarskiiNes.GeneralLattice
 

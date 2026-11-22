@@ -1,4 +1,8 @@
-import LeanCode.ZakTransform.ZakDef
+module
+
+public import LeanCode.ZakTransform.ZakDef
+
+@[expose] public section
 
 open scoped BigOperators
 open MeasureTheory
@@ -329,14 +333,13 @@ theorem zakFiberSampleSqSummableAETarget_of_pos
     have heq : (fun k : ℤ => eLpNorm (F k) 1 μ) =
         fun k : ℤ => ENNReal.ofReal (∫ x, ‖F k x‖ ∂μ) := by
       funext k
-      rw [eLpNorm_one_eq_lintegral_enorm]
+      rw [eLpNorm_one_eq_lintegral_enorm (hF_int k).aestronglyMeasurable]
       exact (ofReal_integral_norm_eq_lintegral_enorm (hF_int k)).symm
     rw [heq]
     exact hsum_integral_norm.tsum_ofReal_ne_top
   have hae_restrict :
       ∀ᵐ x ∂μ, Summable fun k : ℤ => ‖F k x‖ :=
-    summable_norm_of_tsum_eLpNorm_ne_top (show (1 : ENNReal) ≤ 1 by rfl)
-      (fun k => (hF_int k).aestronglyMeasurable) h_eLp
+    summable_norm_of_tsum_eLpNorm_ne_top (show (1 : ENNReal) ≤ 1 by rfl) h_eLp
   rw [ae_restrict_iff' measurableSet_Ioc] at hae_restrict
   filter_upwards [hae_restrict] with x hx hx_mem
   have hx' := hx hx_mem

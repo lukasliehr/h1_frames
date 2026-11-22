@@ -1,4 +1,8 @@
-import LeanCode.GeneralLattice.LatticeReduction
+module
+
+public import LeanCode.GeneralLattice.LatticeReduction
+
+@[expose] public section
 
 open MeasureTheory
 open scoped BigOperators ENNReal
@@ -19,21 +23,18 @@ noncomputable def chirpPhase (η t : ℝ) : ℂ :=
   rw [harg]
   exact Complex.norm_exp_ofReal_mul_I _
 
-private theorem memLp_chirpFun (η : ℝ)
+theorem memLp_chirpFun (η : ℝ)
     (f : Lp ℂ 2 (volume : Measure ℝ)) :
     MemLp (fun t : ℝ => chirpPhase η t * (f : ℝ → ℂ) t)
       2 (volume : Measure ℝ) := by
   have hf := Lp.memLp f
-  refine ⟨?_, ?_⟩
-  · exact (Continuous.aestronglyMeasurable (by
+  have hmeas : AEStronglyMeasurable
+      (fun t : ℝ => chirpPhase η t * (f : ℝ → ℂ) t) (volume : Measure ℝ) :=
+    (Continuous.aestronglyMeasurable (by
       unfold chirpPhase
-      continuity)).mul hf.1
-  · have heq :
-        eLpNorm (fun t : ℝ => chirpPhase η t * (f : ℝ → ℂ) t) 2 volume =
-          eLpNorm (f : ℝ → ℂ) 2 volume :=
-      eLpNorm_congr_norm_ae (Filter.Eventually.of_forall fun t => by
-        rw [norm_mul, norm_chirpPhase, one_mul])
-    exact heq.trans_lt hf.2
+      continuity)).mul hf.aestronglyMeasurable
+  exact hf.congr_norm hmeas (Filter.Eventually.of_forall fun t => by
+    rw [norm_mul, norm_chirpPhase, one_mul])
 
 /-- Quadratic-phase multiplication on `L²(ℝ)`. -/
 noncomputable def chirpLp (η : ℝ)
@@ -71,7 +72,8 @@ lemma chirpLp_smul (η : ℝ) (c : ℂ) (f : Lp ℂ 2 (volume : Measure ℝ)) :
   unfold chirpLp
   rw [Lp.norm_toLp, Lp.norm_def]
   congr 1
-  exact eLpNorm_congr_norm_ae (Filter.Eventually.of_forall fun t => by
+  exact eLpNorm_congr_norm_ae (memLp_chirpFun η f).aestronglyMeasurable
+    (Lp.memLp f).aestronglyMeasurable (Filter.Eventually.of_forall fun t => by
     rw [norm_mul, norm_chirpPhase, one_mul])
 
 noncomputable def chirpLinearIsometry (η : ℝ) :
@@ -119,8 +121,8 @@ private lemma Lp_norm_sq_eq_integral_real
       (Filter.Eventually.of_forall (fun t => sq_nonneg _)) hint.1,
     Lp.norm_def, ← ENNReal.toReal_pow]
   congr 1
-  rw [eLpNorm_eq_lintegral_rpow_enorm (by norm_num : (2 : ℝ≥0∞) ≠ 0)
-      (by norm_num : (2 : ℝ≥0∞) ≠ ∞), ENNReal.toReal_ofNat,
+  rw [eLpNorm_eq_lintegral_rpow_enorm_toReal (by norm_num : (2 : ℝ≥0∞) ≠ 0)
+      (by norm_num : (2 : ℝ≥0∞) ≠ ∞) (Lp.memLp f).aestronglyMeasurable, ENNReal.toReal_ofNat,
     ← ENNReal.rpow_natCast (_ ^ (1 / (2 : ℝ))) 2, ← ENNReal.rpow_mul,
     show (1 / (2 : ℝ)) * ((2 : ℕ) : ℝ) = 1 from by norm_num, ENNReal.rpow_one]
   refine lintegral_congr (fun t => ?_)
@@ -133,19 +135,19 @@ private lemma dilationScalar_norm_sq {ν : ℝ} (hν : 0 < ν) :
     inv_pow, Real.sq_sqrt hν.le]
 
 private lemma quasiMeasurePreserving_div_const {ν : ℝ} (hν : ν ≠ 0) :
-    MeasureTheory.Measure.QuasiMeasurePreserving (fun t : ℝ => t / ν) volume volume := by
+    MeasureTheory.QuasiMeasurePreserving (fun t : ℝ => t / ν) volume volume := by
   simpa [div_eq_inv_mul, smul_eq_mul, mul_comm] using
     (MeasureTheory.Measure.quasiMeasurePreserving_smul volume (inv_ne_zero hν) :
-      MeasureTheory.Measure.QuasiMeasurePreserving (fun t : ℝ => ν⁻¹ • t) volume volume)
+      MeasureTheory.QuasiMeasurePreserving (fun t : ℝ => ν⁻¹ • t) volume volume)
 
-private theorem memLp_dilationFun {ν : ℝ} (hν : 0 < ν)
+theorem memLp_dilationFun {ν : ℝ} (hν : 0 < ν)
     (f : Lp ℂ 2 (volume : Measure ℝ)) :
     MemLp (dilationFun ν f) 2 (volume : Measure ℝ) := by
   have hf := Lp.memLp f
   have hmeas : AEStronglyMeasurable (dilationFun ν f) volume := by
     unfold dilationFun
     exact (aestronglyMeasurable_const.mul
-      (hf.1.comp_quasiMeasurePreserving
+      (hf.aestronglyMeasurable.comp_quasiMeasurePreserving
         (quasiMeasurePreserving_div_const (ne_of_gt hν))))
   rw [MeasureTheory.memLp_two_iff_integrable_sq_norm hmeas]
   have hbase : Integrable (fun t : ℝ => ‖(f : ℝ → ℂ) t‖ ^ 2) volume :=
@@ -174,7 +176,7 @@ lemma dilationLp_add (ν : ℝ) (hν : 0 < ν)
   have hqmp := quasiMeasurePreserving_div_const (ne_of_gt hν)
   filter_upwards [dilationLp_coe_ae ν hν (f + g), dilationLp_coe_ae ν hν f,
     dilationLp_coe_ae ν hν g, Lp.coeFn_add f g,
-    hqmp.ae_eq (Lp.coeFn_add f g),
+    hqmp.ae_eq_comp (Lp.coeFn_add f g),
     Lp.coeFn_add (dilationLp ν hν f) (dilationLp ν hν g)] with
       t hout hf hg _hadd hadd hres
   rw [hout, hres]
@@ -192,7 +194,7 @@ lemma dilationLp_smul (ν : ℝ) (hν : 0 < ν) (c : ℂ)
   have hqmp := quasiMeasurePreserving_div_const (ne_of_gt hν)
   filter_upwards [dilationLp_coe_ae ν hν (c • f), dilationLp_coe_ae ν hν f,
     Lp.coeFn_smul c f, Lp.coeFn_smul c (dilationLp ν hν f),
-    hqmp.ae_eq (Lp.coeFn_smul c f)] with
+    hqmp.ae_eq_comp (Lp.coeFn_smul c f)] with
       t hout hf _hsmul hres ht_smul
   rw [hout, hres]
   unfold dilationFun
@@ -239,7 +241,7 @@ noncomputable def dilationLinearIsometryEquiv (ν : ℝ) (hν : 0 < ν) :
     have hqmp := quasiMeasurePreserving_div_const (ne_of_gt hν)
     filter_upwards [dilationLp_coe_ae ν hν (dilationLp ν⁻¹ hνinv f),
       dilationLp_coe_ae ν⁻¹ hνinv f,
-      hqmp.ae_eq (dilationLp_coe_ae ν⁻¹ hνinv f)] with
+      hqmp.ae_eq_comp (dilationLp_coe_ae ν⁻¹ hνinv f)] with
         t hout _hin hin
     rw [hout]
     unfold dilationFun
@@ -313,7 +315,7 @@ lemma dilationLinearIsometryEquiv_generalizedH1
     unfold generalizedH1Lp
     exact (memLp_generalizedH1 (dilatedTau_im_pos hν hτ)).coeFn_toLp
   filter_upwards [dilationLp_coe_ae ν hν (generalizedH1Lp τ hτ),
-    hqmp.ae_eq hsource, htarget,
+    hqmp.ae_eq_comp hsource, htarget,
     Lp.coeFn_smul (dilationH1Scale ν)
       (generalizedH1Lp (dilatedTau ν τ) (dilatedTau_im_pos hν hτ))] with
       t hout hsrc htarg hsmul
@@ -389,7 +391,7 @@ lemma dilationLinearIsometryEquiv_generalizedH1LatticeElementLp
     exact (memLp_generalizedH1LatticeElement (dilatedTau_im_pos hν hτ)
       (symplecticDilationMatrix ν * M) m n).coeFn_toLp
   filter_upwards [dilationLp_coe_ae ν hν (generalizedH1LatticeElementLp τ hτ M m n),
-    hqmp.ae_eq hsource, htarget,
+    hqmp.ae_eq_comp hsource, htarget,
     Lp.coeFn_smul (dilationH1Scale ν)
       (generalizedH1LatticeElementLp (dilatedTau ν τ) (dilatedTau_im_pos hν hτ)
         (symplecticDilationMatrix ν * M) m n)] with t hout hsrc htarg hsmul

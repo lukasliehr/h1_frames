@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive.GammaFiber
+module
+
+public import LeanCode.RationalDensity.RationalPositive.GammaFiber
+
+@[expose] public section
 
 /-!
 Work file for replacing `rationalPositiveGammaMatrix_coeff_identity`.
@@ -1039,8 +1043,8 @@ lemma Lp_norm_sq_eq_integral {E : Type*} [NormedAddCommGroup E]
       (Filter.Eventually.of_forall (fun z => sq_nonneg _)) hint.1,
     Lp.norm_def, ← ENNReal.toReal_pow]
   congr 1
-  rw [eLpNorm_eq_lintegral_rpow_enorm (by norm_num : (2 : ℝ≥0∞) ≠ 0)
-      (by norm_num : (2 : ℝ≥0∞) ≠ ⊤), ENNReal.toReal_ofNat,
+  rw [eLpNorm_eq_lintegral_rpow_enorm_toReal (by norm_num : (2 : ℝ≥0∞) ≠ 0)
+      (by norm_num : (2 : ℝ≥0∞) ≠ ⊤) (Lp.memLp f).aestronglyMeasurable, ENNReal.toReal_ofNat,
     ← ENNReal.rpow_natCast (_ ^ (1 / (2 : ℝ))) 2, ← ENNReal.rpow_mul,
     show (1 / (2 : ℝ)) * ((2 : ℕ) : ℝ) = 1 from by norm_num, ENNReal.rpow_one]
   refine lintegral_congr (fun z => ?_)
@@ -1411,10 +1415,9 @@ lemma exists_window_P {γ : ℝ} (hγ : 0 < γ) (b₀ : ℝ) :
     Lp.memLp (Zak.zakL2FrequencyFiber γ hγ f 0 hc)
   refine ⟨fun ξ => Zak.zakL2FrequencyFiber γ hγ f 0 hc ξ, ?_, ?_⟩
   · have hstar : MemLp (fun ξ => star (Zak.zakL2FrequencyFiber γ hγ f 0 hc ξ)) 2
-        ((volume : Measure ℝ).restrict (Set.Ioc (0 : ℝ) γ⁻¹)) := by
-      refine ⟨hPmem.aestronglyMeasurable.star, ?_⟩
-      rw [eLpNorm_congr_norm_ae (Filter.Eventually.of_forall fun ξ => norm_star _)]
-      exact hPmem.2
+        ((volume : Measure ℝ).restrict (Set.Ioc (0 : ℝ) γ⁻¹)) :=
+      hPmem.congr_norm hPmem.aestronglyMeasurable.star
+        (Filter.Eventually.of_forall fun ξ => (norm_star _).symm)
     exact hstar
   · intro i
     rw [Zak.zakL2FrequencyFiber_fourierCoeffOn γ hγ f 0 hc i]
@@ -3220,7 +3223,7 @@ lemma gammaMatrixEuclideanEnergyIntegral_eq_iterated
       (fun z => ‖(rationalZakMatrix α p q z *ᵥ
         rationalPositiveGammaFiberField hα hβ hpq_coprime hgap hαβ x z) t‖ ^ 2)
       (volume : Measure (ℝ × ℝ)) := fun t =>
-    (((continuous_apply t).comp_aestronglyMeasurable hmem.1).norm.pow 2)
+    (((continuous_apply t).comp_aestronglyMeasurable hmem.aestronglyMeasurable).norm.pow 2)
   have hFint : ∀ t : Fin q, Integrable
       (fun z => ‖(rationalZakMatrix α p q z *ᵥ
         rationalPositiveGammaFiberField hα hβ hpq_coprime hgap hαβ x z) t‖ ^ 2)
@@ -3265,7 +3268,7 @@ lemma matrixComponent_marginal_integrableOn {α β : ℝ} {p q : ℕ} [NeZero q]
         (volume : Measure (ℝ × ℝ)) :=
       (hmemE.integrable_norm_pow (p := 2) (by norm_num)).congr
         (Filter.Eventually.of_forall (fun z => norm_toEuclidCLM_sq q _))
-    refine hGint.mono' (((continuous_apply t).comp_aestronglyMeasurable hmem.1).norm.pow 2)
+    refine hGint.mono' (((continuous_apply t).comp_aestronglyMeasurable hmem.aestronglyMeasurable).norm.pow 2)
       (Filter.Eventually.of_forall (fun z => ?_))
     rw [Real.norm_of_nonneg (sq_nonneg _)]
     exact Finset.single_le_sum

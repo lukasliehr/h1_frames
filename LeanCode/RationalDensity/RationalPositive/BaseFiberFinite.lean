@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive.GaussianPoisson
+module
+
+public import LeanCode.RationalDensity.RationalPositive.GaussianPoisson
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal
@@ -331,7 +335,7 @@ theorem rationalPositiveBaseFiberPartialSum_Lp_dist_eq_lpNorm_tail
           rw [hsub]
     _ = lpNorm T 2 μQ := by
           rw [Lp.norm_toLp]
-          exact toReal_eLpNorm hT.aestronglyMeasurable
+          exact toReal_eLpNorm
     _ = lpNorm (rationalPositiveBaseFiberPartialTail α p q M N x) 2
         (((volume : Measure ℝ).restrict
           (Set.Ioc (0 : ℝ) (rationalZakEta α p q))).prod

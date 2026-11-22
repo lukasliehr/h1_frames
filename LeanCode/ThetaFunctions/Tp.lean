@@ -1,8 +1,12 @@
-import LeanCode.ThetaFunctions.ThetaBasic
-import Mathlib.LinearAlgebra.Vandermonde
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
+module
+
+public import LeanCode.ThetaFunctions.ThetaBasic
+public import Mathlib.LinearAlgebra.Vandermonde
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
+
+@[expose] public section
 
 namespace LyubarskiiNes.ThetaFunctions
 

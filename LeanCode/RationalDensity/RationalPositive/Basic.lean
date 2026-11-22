@@ -1,7 +1,11 @@
-import LeanCode.RationalDensity.RankScaling
-import LeanCode.ZakTransform.Criterion
-import LeanCode.TorsionJets.FourierResidue
-import Mathlib.Analysis.Calculus.SmoothSeries
+module
+
+public import LeanCode.RationalDensity.RankScaling
+public import LeanCode.ZakTransform.Criterion
+public import LeanCode.TorsionJets.FourierResidue
+public import Mathlib.Analysis.Calculus.SmoothSeries
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal
@@ -135,8 +139,7 @@ theorem tsum_int_qMulSubFinEquiv
       ∑' eb : ℤ × Fin q,
         f ((q : ℤ) * eb.1 - (((eb.2 : Fin q) : ℕ) : ℤ)) := by
   symm
-  simpa [intQMulSubFinEquiv] using
-    (Equiv.tsum_eq (intQMulSubFinEquiv q hq) f)
+  exact Equiv.tsum_eq (intQMulSubFinEquiv q hq) f
 
 /-- Nested-sum form of the student's reindexing `m = q * ell - b`, with
 the finite residue index outside.  This is the shape used in the first

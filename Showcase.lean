@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
+
 noncomputable section
 
 open scoped BigOperators Real Complex InnerProductSpace Matrix

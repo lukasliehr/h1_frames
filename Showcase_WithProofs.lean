@@ -1,4 +1,8 @@
-import LeanCode.GeneralLattice.GeneralTheorem
+module
+
+public import LeanCode.GeneralLattice.GeneralTheorem
+
+@[expose] public section
 
 /-!
 # The Lyubarskii--Nes theorem for arbitrary lattices -- machine-checked proof

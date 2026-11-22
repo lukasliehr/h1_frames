@@ -1,7 +1,12 @@
-import LeanCode.FrobeniusDeterminant.FrobeniusFactor
-import LeanCode.FrobeniusDeterminant.LevelPComponent
-import LeanCode.FrobeniusDeterminant.XiSectionBase
-import LeanCode.FrobeniusDeterminant.ThetaDimension3
+module
+
+public import LeanCode.FrobeniusDeterminant.FrobeniusFactor
+public import LeanCode.FrobeniusDeterminant.LevelPComponent
+public import LeanCode.FrobeniusDeterminant.XiSectionBase
+public import LeanCode.FrobeniusDeterminant.ThetaDimension3
+
+@[expose] public section
+
 open Complex Matrix
 open scoped Real
 namespace LyubarskiiNes.FrobeniusDeterminant

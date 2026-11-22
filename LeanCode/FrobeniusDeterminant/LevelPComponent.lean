@@ -1,5 +1,9 @@
-import LeanCode.FrobeniusDeterminant.ThetaZeroCount
-import LeanCode.FrobeniusDeterminant.ThetaFourierRegroup
+module
+
+public import LeanCode.FrobeniusDeterminant.ThetaZeroCount
+public import LeanCode.FrobeniusDeterminant.ThetaFourierRegroup
+
+@[expose] public section
 
 /-!
 # Level-`p` Fourier components of the Jacobi theta series

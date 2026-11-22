@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive.BaseFiberLimit
+module
+
+public import LeanCode.RationalDensity.RationalPositive.BaseFiberLimit
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal
@@ -839,7 +843,7 @@ theorem rationalPositiveFiberField_component_aestronglyMeasurable
       aestronglyMeasurable_const
     exact
       AEStronglyMeasurable.piecewise
-        (measurableSet_rationalPositiveFundamentalRect α p q) hfS hzero
+        (measurableSet_rationalPositiveFundamentalRect α p q).nullMeasurableSet hfS hzero
   have hfield :
       (fun z : ℝ × ℝ =>
         rationalPositiveFiberField hα hβ hpq_coprime hgap hαβ x z r) =
@@ -866,7 +870,7 @@ theorem rationalPositiveFiberField_aestronglyMeasurable
         rationalPositiveFiberField hα hβ hpq_coprime hgap hαβ x z)
       (volume : Measure (ℝ × ℝ)) := by
   intro x
-  exact (aemeasurable_pi_lambda _ fun r =>
+  exact (AEMeasurable.of_eval fun r =>
     (rationalPositiveFiberField_component_aestronglyMeasurable
       hα hβ hpq_coprime hgap hαβ x r).aemeasurable).aestronglyMeasurable
 

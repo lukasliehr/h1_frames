@@ -1,4 +1,8 @@
-import LeanCode.ComplexAnalysis.DivisionByDivisor
+module
+
+public import LeanCode.ComplexAnalysis.DivisionByDivisor
+
+@[expose] public section
 
 namespace LyubarskiiNes.ThetaFunctions
 

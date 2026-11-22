@@ -1,6 +1,10 @@
-import LeanCode.ThetaFunctions.ThetaBasic
-import LeanCode.ThetaFunctions.OddTheta
-import LeanCode.FrobeniusDeterminant.ThetaZeroCount
+module
+
+public import LeanCode.ThetaFunctions.ThetaBasic
+public import LeanCode.ThetaFunctions.OddTheta
+public import LeanCode.FrobeniusDeterminant.ThetaZeroCount
+
+@[expose] public section
 
 /-!
 # `Ξ_p` and the theta zero set (upstream base)

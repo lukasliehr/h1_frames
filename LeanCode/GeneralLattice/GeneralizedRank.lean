@@ -1,6 +1,10 @@
-import LeanCode.GeneralLattice.GeneralizedZak
-import LeanCode.RationalDensity.RationalPositive.RankBounds
-import LeanCode.FrobeniusDeterminant.PrimitiveDerivativeSkeleton
+module
+
+public import LeanCode.GeneralLattice.GeneralizedZak
+public import LeanCode.RationalDensity.RationalPositive.RankBounds
+public import LeanCode.FrobeniusDeterminant.PrimitiveDerivativeSkeleton
+
+@[expose] public section
 
 open scoped BigOperators Matrix
 

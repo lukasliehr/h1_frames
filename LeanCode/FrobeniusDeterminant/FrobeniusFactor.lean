@@ -1,7 +1,11 @@
-import LeanCode.FrobeniusDeterminant.LevelPComponent
-import LeanCode.TorsionJets.TorsionJet
-import LeanCode.FrobeniusDeterminant.XiSectionBase
-import LeanCode.FrobeniusDeterminant.ResidueTheorem
+module
+
+public import LeanCode.FrobeniusDeterminant.LevelPComponent
+public import LeanCode.TorsionJets.TorsionJet
+public import LeanCode.FrobeniusDeterminant.XiSectionBase
+public import LeanCode.FrobeniusDeterminant.ResidueTheorem
+
+@[expose] public section
 
 /-!
 # Towards the Frobenius determinant factorization (F1)

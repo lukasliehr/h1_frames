@@ -1,11 +1,15 @@
-import Mathlib.NumberTheory.ModularForms.JacobiTheta.TwoVariable
-import Mathlib.Analysis.Complex.JensenFormula
-import Mathlib.Analysis.Calculus.FDeriv.Analytic
-import Mathlib.MeasureTheory.Integral.CircleAverage
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.Algebra.Module.ZLattice.Covolume
-import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
-import Mathlib.Order.Filter.AtTopBot.Ring
+module
+
+public import Mathlib.NumberTheory.ModularForms.JacobiTheta.TwoVariable
+public import Mathlib.Analysis.Complex.JensenFormula
+public import Mathlib.Analysis.Calculus.FDeriv.Analytic
+public import Mathlib.MeasureTheory.Integral.CircleAverage
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.Algebra.Module.ZLattice.Covolume
+public import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
+public import Mathlib.Order.Filter.AtTopBot.Ring
+
+@[expose] public section
 
 /-!
 # The theta zero count (forward direction of the zero set)

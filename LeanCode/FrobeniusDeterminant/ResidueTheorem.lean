@@ -1,7 +1,11 @@
-import Mathlib.Analysis.Complex.CauchyIntegral
-import Mathlib.Analysis.Complex.HasPrimitives
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
-import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv
+module
+
+public import Mathlib.Analysis.Complex.CauchyIntegral
+public import Mathlib.Analysis.Complex.HasPrimitives
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv
+
+@[expose] public section
 
 /-!
 # Towards the residue theorem on a lattice parallelogram
@@ -545,7 +549,7 @@ theorem logDeriv_principal_part {f u : ℂ → ℂ} {ζ : ℂ} {m : ℕ}
   have hdpow : DifferentiableAt ℂ (fun z => (z - ζ) ^ m) z := by fun_prop
   rw [show (fun z => (z - ζ) ^ m • u z) = fun z => (z - ζ) ^ m * u z from by
       funext w; rw [smul_eq_mul],
-    logDeriv_mul z hpowne hzune hdpow hzdu, logDeriv_fun_pow hdsub m]
+    logDeriv_fun_mul z hpowne hzune hdpow hzdu, logDeriv_fun_pow hdsub m]
   congr 1
   rw [logDeriv_apply, show deriv (fun z => z - ζ) z = 1 by simp, mul_one_div]
 

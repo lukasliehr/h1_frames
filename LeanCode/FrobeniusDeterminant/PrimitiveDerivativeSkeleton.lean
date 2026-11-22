@@ -1,11 +1,15 @@
-import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
-import LeanCode.TorsionJets.TorsionJet
-import LeanCode.ThetaFunctions.OddTheta
-import LeanCode.FrobeniusDeterminant.ThetaZeroCount
-import LeanCode.FrobeniusDeterminant.ThetaDimension3
-import LeanCode.FrobeniusDeterminant.XiSectionBase
-import LeanCode.FrobeniusDeterminant.FrobeniusFactor
-import LeanCode.FrobeniusDeterminant.F3Operator
+module
+
+public import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
+public import LeanCode.TorsionJets.TorsionJet
+public import LeanCode.ThetaFunctions.OddTheta
+public import LeanCode.FrobeniusDeterminant.ThetaZeroCount
+public import LeanCode.FrobeniusDeterminant.ThetaDimension3
+public import LeanCode.FrobeniusDeterminant.XiSectionBase
+public import LeanCode.FrobeniusDeterminant.FrobeniusFactor
+public import LeanCode.FrobeniusDeterminant.F3Operator
+
+@[expose] public section
 
 /-!
 # Verified skeleton for the primitive theta-derivative cyclic-minor theorem

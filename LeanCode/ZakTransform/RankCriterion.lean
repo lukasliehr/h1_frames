@@ -1,4 +1,8 @@
-import LeanCode.ZakTransform.Fiberization
+module
+
+public import LeanCode.ZakTransform.Fiberization
+
+@[expose] public section
 
 open scoped Matrix ComplexOrder
 open MeasureTheory
@@ -257,7 +261,7 @@ lemma matrix_mulVec_aestronglyMeasurable_of_components
     refine hs.congr ?_
     exact Filter.Eventually.of_forall fun z => by
       simp [Matrix.mulVec, dotProduct]
-  exact (aemeasurable_pi_lambda _ fun i => (hcoord i).aemeasurable).aestronglyMeasurable
+  exact (AEMeasurable.of_eval fun i => (hcoord i).aemeasurable).aestronglyMeasurable
 
 end RankCriterion
 

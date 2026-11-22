@@ -1,5 +1,9 @@
-import LeanCode.GeneralLattice.Definitions
-import LeanCode.RationalDensity.RationalPositive.GammaCoeffWork
+module
+
+public import LeanCode.GeneralLattice.Definitions
+public import LeanCode.RationalDensity.RationalPositive.GammaCoeffWork
+
+@[expose] public section
 
 open MeasureTheory
 
@@ -144,7 +148,7 @@ theorem memLp_generalizedH1Element
   have hbase : Integrable (fun t : ℝ => ‖generalizedH1 τ t‖ ^ 2)
       (volume : Measure ℝ) := by
     have hg := memLp_generalizedH1 hτ
-    rw [MeasureTheory.memLp_two_iff_integrable_sq_norm hg.1] at hg
+    rw [MeasureTheory.memLp_two_iff_integrable_sq_norm hg.aestronglyMeasurable] at hg
     exact hg
   have hshift : Integrable
       ((fun t : ℝ => ‖generalizedH1 τ t‖ ^ 2) ∘

@@ -1,7 +1,11 @@
-import Mathlib.Topology.Algebra.InfiniteSum.Constructions
-import Mathlib.Topology.Algebra.InfiniteSum.Group
-import Mathlib.Analysis.SpecialFunctions.Complex.Circle
-import Mathlib.NumberTheory.ModularForms.JacobiTheta.TwoVariable
+module
+
+public import Mathlib.Topology.Algebra.InfiniteSum.Constructions
+public import Mathlib.Topology.Algebra.InfiniteSum.Group
+public import Mathlib.Analysis.SpecialFunctions.Complex.Circle
+public import Mathlib.NumberTheory.ModularForms.JacobiTheta.TwoVariable
+
+@[expose] public section
 
 /-!
 # Residue-class regrouping of a summable `ℤ`-series

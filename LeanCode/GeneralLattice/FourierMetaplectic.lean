@@ -1,7 +1,11 @@
-import LeanCode.GeneralLattice.Metaplectic
-import Mathlib.Analysis.Fourier.LpSpace
-import Mathlib.Analysis.Fourier.FourierTransformDeriv
-import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
+module
+
+public import LeanCode.GeneralLattice.Metaplectic
+public import Mathlib.Analysis.Fourier.LpSpace
+public import Mathlib.Analysis.Fourier.FourierTransformDeriv
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
+
+@[expose] public section
 
 open MeasureTheory
 open scoped ENNReal SchwartzMap

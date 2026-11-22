@@ -1,4 +1,8 @@
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+
+@[expose] public section
 
 namespace LyubarskiiNes.FrobeniusDeterminant
 

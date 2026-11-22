@@ -1,4 +1,8 @@
-import LeanCode.FrobeniusDeterminant.F1Proportional
+module
+
+public import LeanCode.FrobeniusDeterminant.F1Proportional
+
+@[expose] public section
 
 open Complex Matrix
 open scoped Real

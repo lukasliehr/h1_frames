@@ -1,4 +1,8 @@
-import LeanCode.ZakTransform.Criterion
+module
+
+public import LeanCode.ZakTransform.Criterion
+
+@[expose] public section
 
 namespace LyubarskiiNes.RationalDensity
 

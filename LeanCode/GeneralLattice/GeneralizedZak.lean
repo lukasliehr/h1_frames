@@ -1,4 +1,8 @@
-import LeanCode.GeneralLattice.GeneralizedWindow
+module
+
+public import LeanCode.GeneralLattice.GeneralizedWindow
+
+@[expose] public section
 
 open scoped BigOperators
 

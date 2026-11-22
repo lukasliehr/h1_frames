@@ -1,4 +1,8 @@
-import LeanCode.ZakTransform.RankCriterion
+module
+
+public import LeanCode.ZakTransform.RankCriterion
+
+@[expose] public section
 
 open scoped BigOperators
 

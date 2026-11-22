@@ -1,4 +1,6 @@
-import LeanCode.Main
+module
+
+public import LeanCode.Main
 
 /-!
 # LeanCode

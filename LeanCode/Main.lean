@@ -1,43 +1,45 @@
-import LeanCode.Definitions
-import LeanCode.GeneralLattice.Definitions
-import LeanCode.GeneralLattice.FrameTransfer
-import LeanCode.GeneralLattice.LatticeReduction
-import LeanCode.GeneralLattice.Metaplectic
-import LeanCode.GeneralLattice.GeneralizedWindow
-import LeanCode.GeneralLattice.GeneralizedZak
-import LeanCode.GeneralLattice.GeneralizedRank
-import LeanCode.GeneralLattice.GeneralizedBounds
-import LeanCode.GeneralLattice.GeneralTheorem
-import LeanCode.GeneralLattice.Separable
-import LeanCode.ComplexAnalysis.DivisionByDivisor
-import LeanCode.ThetaFunctions.ThetaBasic
-import LeanCode.ThetaFunctions.Tp
-import LeanCode.ThetaFunctions.OddTheta
-import LeanCode.TorsionJets.FourierResidue
-import LeanCode.TorsionJets.ExpConjugation
-import LeanCode.TorsionJets.TorsionJet
-import LeanCode.FrobeniusDeterminant.FrobeniusDeterminant
-import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
-import LeanCode.FrobeniusDeterminant.ThetaFourierRegroup
-import LeanCode.FrobeniusDeterminant.ThetaZeroCount
-import LeanCode.FrobeniusDeterminant.ResidueTheorem
-import LeanCode.FrobeniusDeterminant.LevelPComponent
-import LeanCode.FrobeniusDeterminant.XiSectionBase
-import LeanCode.FrobeniusDeterminant.ThetaDimension
-import LeanCode.FrobeniusDeterminant.ThetaDimension2
-import LeanCode.FrobeniusDeterminant.ThetaDimension3
-import LeanCode.FrobeniusDeterminant.FrobeniusFactor
-import LeanCode.FrobeniusDeterminant.F1Proportional
-import LeanCode.FrobeniusDeterminant.F1Factorization
-import LeanCode.FrobeniusDeterminant.F3Operator
-import LeanCode.FrobeniusDeterminant.PrimitiveDerivativeSkeleton
-import LeanCode.ZakTransform.ZakDef
-import LeanCode.ZakTransform.Fiberization
-import LeanCode.ZakTransform.RankCriterion
-import LeanCode.ZakTransform.Refinement
-import LeanCode.ZakTransform.Criterion
-import LeanCode.RationalDensity.GaussianZak
-import LeanCode.RationalDensity.RankScaling
-import LeanCode.RationalDensity.RationalPositive
-import LeanCode.Membership.MemLp
-import LeanCode.MainTheorem
+module
+
+public import LeanCode.Definitions
+public import LeanCode.GeneralLattice.Definitions
+public import LeanCode.GeneralLattice.FrameTransfer
+public import LeanCode.GeneralLattice.LatticeReduction
+public import LeanCode.GeneralLattice.Metaplectic
+public import LeanCode.GeneralLattice.GeneralizedWindow
+public import LeanCode.GeneralLattice.GeneralizedZak
+public import LeanCode.GeneralLattice.GeneralizedRank
+public import LeanCode.GeneralLattice.GeneralizedBounds
+public import LeanCode.GeneralLattice.GeneralTheorem
+public import LeanCode.GeneralLattice.Separable
+public import LeanCode.ComplexAnalysis.DivisionByDivisor
+public import LeanCode.ThetaFunctions.ThetaBasic
+public import LeanCode.ThetaFunctions.Tp
+public import LeanCode.ThetaFunctions.OddTheta
+public import LeanCode.TorsionJets.FourierResidue
+public import LeanCode.TorsionJets.ExpConjugation
+public import LeanCode.TorsionJets.TorsionJet
+public import LeanCode.FrobeniusDeterminant.FrobeniusDeterminant
+public import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
+public import LeanCode.FrobeniusDeterminant.ThetaFourierRegroup
+public import LeanCode.FrobeniusDeterminant.ThetaZeroCount
+public import LeanCode.FrobeniusDeterminant.ResidueTheorem
+public import LeanCode.FrobeniusDeterminant.LevelPComponent
+public import LeanCode.FrobeniusDeterminant.XiSectionBase
+public import LeanCode.FrobeniusDeterminant.ThetaDimension
+public import LeanCode.FrobeniusDeterminant.ThetaDimension2
+public import LeanCode.FrobeniusDeterminant.ThetaDimension3
+public import LeanCode.FrobeniusDeterminant.FrobeniusFactor
+public import LeanCode.FrobeniusDeterminant.F1Proportional
+public import LeanCode.FrobeniusDeterminant.F1Factorization
+public import LeanCode.FrobeniusDeterminant.F3Operator
+public import LeanCode.FrobeniusDeterminant.PrimitiveDerivativeSkeleton
+public import LeanCode.ZakTransform.ZakDef
+public import LeanCode.ZakTransform.Fiberization
+public import LeanCode.ZakTransform.RankCriterion
+public import LeanCode.ZakTransform.Refinement
+public import LeanCode.ZakTransform.Criterion
+public import LeanCode.RationalDensity.GaussianZak
+public import LeanCode.RationalDensity.RankScaling
+public import LeanCode.RationalDensity.RationalPositive
+public import LeanCode.Membership.MemLp
+public import LeanCode.MainTheorem

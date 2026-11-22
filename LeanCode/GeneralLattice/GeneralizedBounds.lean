@@ -1,4 +1,8 @@
-import LeanCode.GeneralLattice.GeneralizedRank
+module
+
+public import LeanCode.GeneralLattice.GeneralizedRank
+
+@[expose] public section
 
 open scoped BigOperators Matrix
 

@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive.Basic
+module
+
+public import LeanCode.RationalDensity.RationalPositive.Basic
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal

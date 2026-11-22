@@ -1,4 +1,8 @@
-import LeanCode.ThetaFunctions.Tp
+module
+
+public import LeanCode.ThetaFunctions.Tp
+
+@[expose] public section
 
 namespace LyubarskiiNes.ThetaFunctions
 

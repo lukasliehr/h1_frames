@@ -1,5 +1,9 @@
-import LeanCode.GeneralLattice.FourierMetaplectic
-import LeanCode.GeneralLattice.GeneralizedFrame
+module
+
+public import LeanCode.GeneralLattice.FourierMetaplectic
+public import LeanCode.GeneralLattice.GeneralizedFrame
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix BigOperators

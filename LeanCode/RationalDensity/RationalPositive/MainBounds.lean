@@ -1,5 +1,9 @@
-import LeanCode.RationalDensity.RationalPositive.GammaCoeffWork
-import LeanCode.FrobeniusDeterminant.PrimitiveDerivativeSkeleton
+module
+
+public import LeanCode.RationalDensity.RationalPositive.GammaCoeffWork
+public import LeanCode.FrobeniusDeterminant.PrimitiveDerivativeSkeleton
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal

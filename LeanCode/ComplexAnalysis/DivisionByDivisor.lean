@@ -1,4 +1,8 @@
-import LeanCode.Definitions
+module
+
+public import LeanCode.Definitions
+
+@[expose] public section
 
 namespace LyubarskiiNes.ComplexAnalysis
 

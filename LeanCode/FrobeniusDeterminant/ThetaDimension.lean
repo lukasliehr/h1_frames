@@ -1,9 +1,13 @@
-import LeanCode.FrobeniusDeterminant.ResidueTheorem
-import LeanCode.FrobeniusDeterminant.ThetaZeroCount
-import LeanCode.FrobeniusDeterminant.ThetaFourierRegroup
-import LeanCode.FrobeniusDeterminant.LevelPComponent
-import LeanCode.TorsionJets.ExpConjugation
-import LeanCode.ComplexAnalysis.DivisionByDivisor
+module
+
+public import LeanCode.FrobeniusDeterminant.ResidueTheorem
+public import LeanCode.FrobeniusDeterminant.ThetaZeroCount
+public import LeanCode.FrobeniusDeterminant.ThetaFourierRegroup
+public import LeanCode.FrobeniusDeterminant.LevelPComponent
+public import LeanCode.TorsionJets.ExpConjugation
+public import LeanCode.ComplexAnalysis.DivisionByDivisor
+
+@[expose] public section
 
 /-!
 # Theta-space dimension core (upstream of the skeleton)

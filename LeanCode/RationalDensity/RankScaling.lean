@@ -1,5 +1,9 @@
-import LeanCode.RationalDensity.GaussianZak
-import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
+module
+
+public import LeanCode.RationalDensity.GaussianZak
+public import LeanCode.FrobeniusDeterminant.PrimitiveDerivative
+
+@[expose] public section
 
 namespace LyubarskiiNes.RationalDensity
 

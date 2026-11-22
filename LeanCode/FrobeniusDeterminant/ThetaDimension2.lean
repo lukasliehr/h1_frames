@@ -1,4 +1,9 @@
-import LeanCode.FrobeniusDeterminant.ThetaDimension
+module
+
+public import LeanCode.FrobeniusDeterminant.ThetaDimension
+
+@[expose] public section
+
 open Complex Topology Filter
 namespace LyubarskiiNes.FrobeniusDeterminant.ThetaDimension
 open scoped Real

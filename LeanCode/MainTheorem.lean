@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive
+module
+
+public import LeanCode.RationalDensity.RationalPositive
+
+@[expose] public section
 
 namespace LyubarskiiNes.MainTheorem
 

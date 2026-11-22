@@ -1,4 +1,8 @@
-import LeanCode.TorsionJets.ExpConjugation
+module
+
+public import LeanCode.TorsionJets.ExpConjugation
+
+@[expose] public section
 
 namespace LyubarskiiNes.TorsionJets
 

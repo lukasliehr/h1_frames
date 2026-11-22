@@ -1,5 +1,9 @@
-import LeanCode.GeneralLattice.GeneralizedCriterion
-import LeanCode.GeneralLattice.FrameTransfer
+module
+
+public import LeanCode.GeneralLattice.GeneralizedCriterion
+public import LeanCode.GeneralLattice.FrameTransfer
+
+@[expose] public section
 
 open MeasureTheory
 open scoped BigOperators Matrix

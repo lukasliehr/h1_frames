@@ -1,4 +1,8 @@
-import LeanCode.RationalDensity.RationalPositive.RankBounds
+module
+
+public import LeanCode.RationalDensity.RationalPositive.RankBounds
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Matrix ComplexOrder BigOperators ENNReal

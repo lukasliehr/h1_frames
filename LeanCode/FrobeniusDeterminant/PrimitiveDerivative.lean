@@ -1,7 +1,11 @@
-import LeanCode.FrobeniusDeterminant.FrobeniusDeterminant
-import LeanCode.TorsionJets.ExpConjugation
-import LeanCode.ThetaFunctions.Tp
-import Mathlib.LinearAlgebra.Matrix.Rank
+module
+
+public import LeanCode.FrobeniusDeterminant.FrobeniusDeterminant
+public import LeanCode.TorsionJets.ExpConjugation
+public import LeanCode.ThetaFunctions.Tp
+public import Mathlib.LinearAlgebra.Matrix.Rank
+
+@[expose] public section
 
 namespace LyubarskiiNes.FrobeniusDeterminant
 
