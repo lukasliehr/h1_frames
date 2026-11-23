@@ -1,7 +1,15 @@
 {
   "challenge_module": "Showcase",
   "solution_module": "Showcase_WithProofs",
-  "theorem_names": ["h1Atom_memL2", "MainResult"],
+  "theorem_names": [
+    "h1Atom_memL2",
+    "MainResult",
+    "coefficients_summable"
+  ],
   "definition_names": [],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
 }

@@ -245,7 +245,7 @@ theorem generalized_rational_positive
       simp
     · refine summable_of_pos_le_tsum ?_ (hineq x).1
       exact mul_pos hA (sq_pos_of_ne_zero (norm_ne_zero_iff.mpr hx))
-  constructor
+  refine ⟨hsum, ?_, ?_⟩
   · calc
       A * ‖x‖ ^ 2 ≤ generalizedProductCoeffEnergy (τ := τ) (hτ := hτ) α 1 x := (hineq x).1
       _ = ∑' (m : ℤ) (n : ℤ),

@@ -7,8 +7,8 @@ public import LeanCode.GeneralLattice.GeneralTheorem
 /-!
 # The Lyubarskii--Nes theorem for arbitrary lattices -- machine-checked proof
 
-This file has the same public definitions and theorem as `Showcase.lean`, with
-the two proof bodies supplied by the full formalization.
+This file has the same public definitions and theorems as `Showcase.lean`, with
+the three proof bodies supplied by the full formalization.
 -/
 
 noncomputable section
@@ -78,15 +78,35 @@ theorem MainResult
     (hyp3 : q ≥ p + 2)
     (hyp4 : |M.det|⁻¹ = (q : ℝ) / (p : ℝ)) :
     IsGaborFrame M := by
-  have hframe :=
-    LyubarskiiNes.GeneralLattice.lyubarskiiNes_general_positive
-      M hyp1 hyp2 hyp3 hyp4
-  simpa only [IsGaborFrame,
-    LyubarskiiNes.GeneralLattice.IsGaborFrameForLattice,
-    h1AtomL2_eq_library] using hframe
+  rcases LyubarskiiNes.GeneralLattice.lyubarskiiNes_general_positive
+      M hyp1 hyp2 hyp3 hyp4 with ⟨A, B, hA, hAB, hframe⟩
+  refine ⟨A, B, hA, hAB, fun f => ?_⟩
+  simpa only [h1AtomL2_eq_library] using (hframe f).2
+
+/-! ## Convergence of the series in the frame condition -/
+
+/-- Under the hypotheses of `MainResult`, the family `|⟨f, π(M(m,n))h₁⟩|²` is
+summable over `ℤ × ℤ` for every `f ∈ L²(ℝ)`.  Hence every series in
+`IsGaborFrame M` converges: each inner series over `n` converges
+(`Summable.prod_factor`), and the iterated series is the sum of the whole
+family (`Summable.tsum_prod`).  Lean assigns the value `0` to a divergent
+series, and this theorem shows that `MainResult` does not depend on that
+convention. -/
+theorem coefficients_summable
+    (M : Matrix (Fin 2) (Fin 2) ℝ) {p q : ℕ}
+    (hyp1 : M.det ≠ 0)
+    (hyp2 : Nat.Coprime p q)
+    (hyp3 : q ≥ p + 2)
+    (hyp4 : |M.det|⁻¹ = (q : ℝ) / (p : ℝ))
+    (f : L2) :
+    Summable (fun mn : ℤ × ℤ => ‖⟪f, h1AtomL2 M mn.1 mn.2⟫_ℂ‖ ^ 2) := by
+  rcases LyubarskiiNes.GeneralLattice.lyubarskiiNes_general_positive
+      M hyp1 hyp2 hyp3 hyp4 with ⟨_, _, _, _, hframe⟩
+  simpa only [h1AtomL2_eq_library] using (hframe f).1
 
 -- Kernel audit: only Lean's standard foundational axioms are used.
 #print axioms MainResult
+#print axioms coefficients_summable
 #print axioms h1Atom_memL2
 
 end

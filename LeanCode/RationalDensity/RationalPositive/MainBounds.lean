@@ -644,7 +644,7 @@ theorem rational_positive
   have hsum : Summable fun mn : ℤ × ℤ =>
       ‖inner ℂ x (LyubarskiiNes.h1_element_Lp α β mn.1 mn.2)‖ ^ 2 :=
     (hineq x).1
-  constructor
+  refine ⟨hsum, ?_, ?_⟩
   · calc
       A * ‖x‖ ^ 2 ≤
           ∑' mn : ℤ × ℤ,

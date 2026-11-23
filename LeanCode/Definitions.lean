@@ -79,10 +79,14 @@ theorem memLp_h1 (α : ℝ) (β : ℝ) (m : ℤ) (n : ℤ) :
 noncomputable def h1_element_Lp (α β : ℝ) (m n : ℤ) : Lp ℂ 2 (volume : Measure ℝ) :=
   (memLp_h1 α β m n).toLp
 
-/-- Property that the separable Gabor system `G(h₁, α, β)` is a frame. -/
+/-- Property that the separable Gabor system `G(h₁, α, β)` is a frame.  The
+first condition says that the coefficient family is summable over `ℤ × ℤ`, so
+that no series below takes the value `0` which Lean assigns to a divergent
+series. -/
 def IsGaborFrame (α : ℝ) (β : ℝ) : Prop :=
   ∃ A B : ℝ, 0 < A ∧ A ≤ B ∧ ∀ x : Lp ℂ 2 (volume : Measure ℝ),
-    A * ‖x‖ ^ 2 ≤ ∑' (m : ℤ) (n : ℤ), ‖inner ℂ x (h1_element_Lp α β m n)‖ ^ 2
+    Summable (fun mn : ℤ × ℤ => ‖inner ℂ x (h1_element_Lp α β mn.1 mn.2)‖ ^ 2)
+    ∧ A * ‖x‖ ^ 2 ≤ ∑' (m : ℤ) (n : ℤ), ‖inner ℂ x (h1_element_Lp α β m n)‖ ^ 2
     ∧ ∑' (m : ℤ) (n : ℤ), ‖inner ℂ x (h1_element_Lp α β m n)‖ ^ 2 ≤ B * ‖x‖ ^ 2
 
 /-- The paper's theta function, backed by Mathlib's `jacobiTheta₂`. -/

@@ -33,19 +33,26 @@ automation:
       models: ["claude-fable-5-2"]
       framework: "Claude Code"
   notes: >-
-    Lukas Liehr wrote the definitions and the two statements in Showcase.lean by hand. The agents
-    Codex-5.4 and Claude Opus 4.6 wrote the Lean proofs, that is, the files in LeanCode and the
-    proof parts of Showcase_WithProofs.lean. They followed the proof in the paper, and Lukas Liehr
-    directed them. Claude Fable 5.2 (Claude Code) ported the repository to Lean v4.35.0 and to the
-    Lean module system. The port repaired proofs that the newer Mathlib broke, and in Showcase.lean
-    it changed only the file header. Irina Shafkulovska and Mitchell A. Taylor are authors of the
+    Lukas Liehr wrote the definitions and the statements h1Atom_memL2 and MainResult in
+    Showcase.lean by hand. The agents Codex-5.4 and Claude Opus 4.6 wrote the Lean proofs, that is,
+    the files in LeanCode and the proof parts of Showcase_WithProofs.lean. They followed the proof
+    in the paper, and Lukas Liehr directed them. Claude Fable 5.2 (Claude Code) ported the
+    repository to Lean v4.35.0 and to the Lean module system. The port repaired proofs that the
+    newer Mathlib broke, and in Showcase.lean it changed only the file header. Claude Fable 5.2
+    also wrote the third statement coefficients_summable of Showcase.lean and its proof, after
+    Palomar's automated review asked for the convergence of the series in IsGaborFrame. For this
+    proof it added the summability of the coefficient family as a condition to the frame predicates
+    of the library in LeanCode. Irina Shafkulovska and Mitchell A. Taylor are authors of the
     mathematical proof in the paper and did not take part in the Lean work.
 
 review:
   status: "author-verified"
   notes: >-
     The author verification covers the statement file Showcase.lean and nothing else. Lukas Liehr
-    compared its definitions and its two statements line by line with the implication (2) ⇒ (1) of
-    Theorem 1.1 of the paper, and Section 6 of the paper records this comparison. No author read
-    the proofs that the agents wrote. Their correctness rests on the Lean kernel, that is, on the
-    build and on `lake comparator --config comparator.json`.
+    compared its definitions and the statements h1Atom_memL2 and MainResult line by line with the
+    implication (2) ⇒ (1) of Theorem 1.1 of the paper, and Section 6 of the paper records this
+    comparison. Lukas Liehr also read the statement coefficients_summable, which is not in the
+    paper, and confirmed that it states the summability of the coefficients over ℤ × ℤ under the
+    hypotheses of MainResult. No author read the proofs that the agents wrote. Their correctness
+    rests on the Lean kernel, that is, on the build and on
+    `lake comparator --config comparator.json`.

@@ -165,10 +165,14 @@ noncomputable def generalizedH1ElementLp
     Lp ℂ 2 (volume : Measure ℝ) :=
   (memLp_generalizedH1Element hτ α β m n).toLp
 
-/-- Frame predicate for the generalized window on a separable lattice. -/
+/-- Frame predicate for the generalized window on a separable lattice.  The
+first condition is summability of the coefficient family over `ℤ × ℤ`. -/
 def IsGeneralizedGaborFrame
     (τ : ℂ) (hτ : 0 < τ.im) (α β : ℝ) : Prop :=
   ∃ A B : ℝ, 0 < A ∧ A ≤ B ∧ ∀ f : Lp ℂ 2 (volume : Measure ℝ),
+    Summable (fun mn : ℤ × ℤ =>
+        ‖inner ℂ f (generalizedH1ElementLp τ hτ α β mn.1 mn.2)‖ ^ 2)
+      ∧
     A * ‖f‖ ^ 2 ≤
         ∑' (m : ℤ) (n : ℤ),
           ‖inner ℂ f (generalizedH1ElementLp τ hτ α β m n)‖ ^ 2
@@ -203,10 +207,14 @@ noncomputable def generalizedH1LatticeElementLp
   (memLp_generalizedH1LatticeElement hτ M m n).toLp
 
 /-- Frame predicate for a generalized first-Hermite window on an arbitrary
-matrix lattice. -/
+matrix lattice.  The first condition is summability of the coefficient family
+over `ℤ × ℤ`. -/
 def IsGeneralizedGaborFrameForLattice
     (τ : ℂ) (hτ : 0 < τ.im) (M : Matrix (Fin 2) (Fin 2) ℝ) : Prop :=
   ∃ A B : ℝ, 0 < A ∧ A ≤ B ∧ ∀ f : Lp ℂ 2 (volume : Measure ℝ),
+    Summable (fun mn : ℤ × ℤ =>
+        ‖inner ℂ f (generalizedH1LatticeElementLp τ hτ M mn.1 mn.2)‖ ^ 2)
+      ∧
     A * ‖f‖ ^ 2 ≤
         ∑' (m : ℤ) (n : ℤ),
           ‖inner ℂ f (generalizedH1LatticeElementLp τ hτ M m n)‖ ^ 2

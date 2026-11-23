@@ -55,4 +55,23 @@ theorem MainResult
     IsGaborFrame M := by
   sorry
 
+/-! ## Convergence of the series in the frame condition -/
+
+/-- Under the hypotheses of `MainResult`, the family `|⟨f, π(M(m,n))h₁⟩|²` is
+summable over `ℤ × ℤ` for every `f ∈ L²(ℝ)`.  Hence every series in
+`IsGaborFrame M` converges: each inner series over `n` converges
+(`Summable.prod_factor`), and the iterated series is the sum of the whole
+family (`Summable.tsum_prod`).  Lean assigns the value `0` to a divergent
+series, and this theorem shows that `MainResult` does not depend on that
+convention. -/
+theorem coefficients_summable
+    (M : Matrix (Fin 2) (Fin 2) ℝ) {p q : ℕ}
+    (hyp1 : M.det ≠ 0)
+    (hyp2 : Nat.Coprime p q)
+    (hyp3 : q ≥ p + 2)
+    (hyp4 : |M.det|⁻¹ = (q : ℝ) / (p : ℝ))
+    (f : L2) :
+    Summable (fun mn : ℤ × ℤ => ‖⟪f, h1AtomL2 M mn.1 mn.2⟫_ℂ‖ ^ 2) := by
+  sorry
+
 end

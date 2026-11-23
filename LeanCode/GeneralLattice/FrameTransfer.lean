@@ -9,13 +9,16 @@ open scoped BigOperators
 
 namespace LyubarskiiNes.GeneralLattice
 
-/-- The frame inequalities for a doubly indexed family.  Keeping the two
-integer indices explicit makes this definition definitionally compatible with
-the existing separable development. -/
+/-- The frame inequalities for a doubly indexed family, together with
+summability of the coefficient family over `ℤ × ℤ`.  Keeping the two integer
+indices explicit makes this definition definitionally compatible with the
+existing separable development. -/
 def IsFrameFamily
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     (v : ℤ → ℤ → H) : Prop :=
   ∃ A B : ℝ, 0 < A ∧ A ≤ B ∧ ∀ f : H,
+    Summable (fun mn : ℤ × ℤ => ‖inner ℂ f (v mn.1 mn.2)‖ ^ 2)
+      ∧
     A * ‖f‖ ^ 2 ≤
         ∑' (m : ℤ) (n : ℤ), ‖inner ℂ f (v m n)‖ ^ 2
       ∧
@@ -90,9 +93,15 @@ theorem isFrameFamily_reindex
             exact Equiv.tsum_eq e₂ (fun n : ℤ => ‖inner ℂ f (v (e₁ m) n)‖ ^ 2)
       _ = ∑' (m : ℤ) (n : ℤ), ‖inner ℂ f (v m n)‖ ^ 2 :=
         Equiv.tsum_eq e₁ (fun m : ℤ => ∑' n : ℤ, ‖inner ℂ f (v m n)‖ ^ 2)
+  have hsummable : ∀ f : H,
+      Summable (fun mn : ℤ × ℤ => ‖inner ℂ f (v (e₁ mn.1) (e₂ mn.2))‖ ^ 2) ↔
+        Summable (fun mn : ℤ × ℤ => ‖inner ℂ f (v mn.1 mn.2)‖ ^ 2) := by
+    intro f
+    exact (Equiv.prodCongr e₁ e₂).summable_iff
+      (f := fun mn : ℤ × ℤ => ‖inner ℂ f (v mn.1 mn.2)‖ ^ 2)
   simp only [IsFrameFamily]
   constructor <;> rintro ⟨A, B, hA, hAB, h⟩ <;>
-    exact ⟨A, B, hA, hAB, fun f => by simpa only [hsum f] using h f⟩
+    exact ⟨A, B, hA, hAB, fun f => by simpa only [hsum f, hsummable f] using h f⟩
 
 private lemma isFrameFamily_smul_imp
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
@@ -104,6 +113,11 @@ private lemma isFrameFamily_smul_imp
   refine ⟨c₂ * A, c₂ * B, mul_pos hc₂ hA,
     mul_le_mul_of_nonneg_left hAB hc₂.le, ?_⟩
   intro f
+  have hsummable :
+      Summable (fun mn : ℤ × ℤ => ‖inner ℂ f (c • v mn.1 mn.2)‖ ^ 2) := by
+    refine ((hframe f).1.mul_left c₂).congr fun mn => ?_
+    simp [c₂, mul_pow]
+  refine ⟨hsummable, ?_⟩
   have henergy :
       (∑' (m : ℤ) (n : ℤ), ‖inner ℂ f (c • v m n)‖ ^ 2) =
         c₂ * ∑' (m : ℤ) (n : ℤ), ‖inner ℂ f (v m n)‖ ^ 2 := by
@@ -125,10 +139,10 @@ private lemma isFrameFamily_smul_imp
   · calc
       (c₂ * A) * ‖f‖ ^ 2 = c₂ * (A * ‖f‖ ^ 2) := by ring
       _ ≤ c₂ * ∑' (m : ℤ) (n : ℤ), ‖inner ℂ f (v m n)‖ ^ 2 :=
-        mul_le_mul_of_nonneg_left (hframe f).1 hc₂.le
+        mul_le_mul_of_nonneg_left (hframe f).2.1 hc₂.le
   · calc
       c₂ * ∑' (m : ℤ) (n : ℤ), ‖inner ℂ f (v m n)‖ ^ 2 ≤
-          c₂ * (B * ‖f‖ ^ 2) := mul_le_mul_of_nonneg_left (hframe f).2 hc₂.le
+          c₂ * (B * ‖f‖ ^ 2) := mul_le_mul_of_nonneg_left (hframe f).2.2 hc₂.le
       _ = (c₂ * B) * ‖f‖ ^ 2 := by ring
 
 /-- Multiplying every vector of a frame by the same nonzero scalar preserves
